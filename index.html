@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Clareando, fotografia com Clara Fernandes. Ensaios individuais, casais, gestantes, fotografia infantil, batizados, eventos e retratos profissionais."
+    >
+    <meta name="theme-color" content="#FAF8F5">
+    <title>Clareando | Fotografia por Clara Fernandes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    >
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cream: "#FAF8F5",
+              sand: "#EFECE6",
+              gold: "#D4A373",
+              ink: "#1C1917",
+              muted: "#6F6861"
+            },
+            fontFamily: {
+              sans: ["DM Sans", "sans-serif"],
+              serif: ["Playfair Display", "serif"]
+            }
+          }
+        }
+      };
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+        --cream: #faf8f5;
+        --sand: #efece6;
+        --gold: #d4a373;
+        --ink: #1c1917;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 6rem;
+      }
+
+      body {
+        background: var(--cream);
+        color: var(--ink);
+        font-family: "DM Sans", sans-serif;
+      }
+
+      [x-cloak] {
+        display: none !important;
+      }
+
+      h1,
+      h2,
+      h3,
+      .font-editorial {
+        font-family: "Playfair Display", Georgia, serif;
+      }
+
+      a,
+      button,
+      input,
+      select,
+      textarea {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      :focus-visible {
+        outline: 2px solid #8a5a32;
+        outline-offset: 4px;
+      }
+
+      .skip-link {
+        position: absolute;
+        top: 0.75rem;
+        left: 0.75rem;
+        z-index: 100;
+        transform: translateY(-160%);
+        border-radius: 0.25rem;
+        background: var(--ink);
+        padding: 0.75rem 1rem;
+        color: white;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .hero-photo {
+        object-position: center 32%;
+      }
+
+      .gallery-columns {
+        columns: 1;
+        column-gap: 1.25rem;
+      }
+
+      .gallery-item {
+        break-inside: avoid;
+        margin-bottom: 1.25rem;
+      }
+
+      .gallery-item img {
+        transition: transform 650ms cubic-bezier(0.2, 0.65, 0.3, 1);
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.035);
+      }
+
+      .gallery-image {
+        overflow: hidden;
+        background: var(--sand);
+      }
+
+      .gallery-image img {
+        width: 100%;
+        height: auto;
+      }
+
+      .gold-rule {
+        width: 3rem;
+        height: 1px;
+        background: var(--gold);
+      }
+
+      .form-control {
+        width: 100%;
+        border: 1px solid #d6d0c8;
+        border-radius: 0.25rem;
+        background: rgba(250, 248, 245, 0.8);
+        padding: 0.85rem 0.95rem;
+        color: var(--ink);
+      }
+
+      .form-control::placeholder {
+        color: #817970;
+      }
+
+      .form-control:focus {
+        border-color: #9c714e;
+        outline: 2px solid rgba(156, 113, 78, 0.18);
+        outline-offset: 1px;
+      }
+
+      @media (min-width: 640px) {
+        .gallery-columns {
+          columns: 2;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .gallery-columns {
+          columns: 3;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+  <body
+    x-data="{
+      menuOpen: false,
+      shareUrl: '',
+      formMessage: '',
+      prepareBudget(event) {
+        const fields = new FormData(event.target);
+        const text = [
+          'Olá, Clara! Gostaria de conversar sobre um orçamento para fotografia.',
+          '',
+          'Nome: ' + fields.get('name'),
+          'Contato para retorno: ' + fields.get('contact'),
+          'Tipo de ensaio/evento: ' + fields.get('service'),
+          'Data ou período: ' + (fields.get('date') || 'A combinar'),
+          'Localidade: ' + (fields.get('location') || 'A combinar'),
+          'Ideia: ' + fields.get('message')
+        ].join('\n');
+        this.shareUrl = 'https://wa.me/5584996740734?text=' + encodeURIComponent(text);
+        this.formMessage = 'Mensagem preparada para o WhatsApp do Clareando. Revise e confirme o envio no aplicativo.';
+      }
+    }"
+  >
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-cream/95 backdrop-blur-md">
+      <nav class="mx-auto flex min-h-[76px] max-w-7xl items-center justify-between px-5 sm:px-8" aria-label="Navegação principal">
+        <a class="group leading-none" href="#inicio" aria-label="Clareando, início">
+          <span class="block font-serif text-[1.65rem] tracking-[0.14em] text-ink">CLAREANDO</span>
+          <span class="mt-1 block text-[0.62rem] tracking-[0.2em] text-muted">por Clara Fernandes</span>
+        </a>
+
+        <div class="hidden items-center gap-6 xl:flex">
+          <a class="text-sm text-ink/80 transition hover:text-[#8a5a32]" href="#inicio">Início</a>
+          <a class="text-sm text-ink/80 transition hover:text-[#8a5a32]" href="#portfolio">Portfólio</a>
+          <a class="text-sm text-ink/80 transition hover:text-[#8a5a32]" href="#especialidades">Especialidades</a>
+          <a class="text-sm text-ink/80 transition hover:text-[#8a5a32]" href="#pacotes">Pacotes</a>
+          <a class="text-sm text-ink/80 transition hover:text-[#8a5a32]" href="#sobre">Sobre</a>
+          <a class="text-sm text-ink/80 transition hover:text-[#8a5a32]" href="#contato">Contato</a>
+        </div>
+
+        <a
+          class="hidden items-center gap-3 bg-ink px-5 py-3 text-xs font-semibold tracking-[0.08em] text-cream transition hover:bg-[#49392e] xl:inline-flex"
+          href="https://wa.me/5584996740734?text=Ol%C3%A1%2C%20Clara!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20fotografia."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          SOLICITAR ORÇAMENTO <span aria-hidden="true">↗</span>
+        </a>
+
+        <button
+          class="inline-flex h-11 w-11 items-center justify-center border border-ink/15 text-ink xl:hidden"
+          type="button"
+          @click="menuOpen = !menuOpen"
+          :aria-expanded="menuOpen.toString()"
+          aria-controls="menu-mobile"
+          :aria-label="menuOpen ? 'Fechar menu' : 'Abrir menu'"
+        >
+          <svg x-show="!menuOpen" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" stroke-width="1.5"></path>
+          </svg>
+          <svg x-show="menuOpen" x-cloak class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="m6 6 12 12M18 6 6 18" stroke-linecap="round" stroke-width="1.5"></path>
+          </svg>
+        </button>
+      </nav>
+
+      <div id="menu-mobile" x-cloak x-show="menuOpen" x-transition.opacity class="border-t border-ink/10 bg-cream px-5 pb-5 pt-3 xl:hidden">
+        <div class="mx-auto flex max-w-7xl flex-col">
+          <a class="border-b border-ink/10 py-3 text-sm" href="#inicio" @click="menuOpen = false">Início</a>
+          <a class="border-b border-ink/10 py-3 text-sm" href="#portfolio" @click="menuOpen = false">Portfólio</a>
+          <a class="border-b border-ink/10 py-3 text-sm" href="#especialidades" @click="menuOpen = false">Especialidades</a>
+          <a class="border-b border-ink/10 py-3 text-sm" href="#pacotes" @click="menuOpen = false">Pacotes</a>
+          <a class="border-b border-ink/10 py-3 text-sm" href="#sobre" @click="menuOpen = false">Sobre</a>
+          <a class="py-3 text-sm" href="#contato" @click="menuOpen = false">Contato e orçamento</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="conteudo" class="pt-[76px]">
+      <section id="inicio" class="mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-10 sm:px-8 sm:pb-24 sm:pt-14 lg:min-h-[calc(100svh-76px)] lg:grid-cols-[0.92fr_1.08fr] lg:gap-16 lg:py-16">
+        <div class="order-2 max-w-xl lg:order-1">
+          <p class="mb-6 flex items-center gap-3 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#8a6547]">
+            <span class="gold-rule" aria-hidden="true"></span>
+            Fotografia com sensibilidade
+          </p>
+          <h1 class="max-w-[13ch] text-4xl leading-[1.12] text-ink sm:text-5xl lg:text-[4.25rem]">
+            Clareando — eternizando a beleza de cada instante.
+          </h1>
+          <p class="mt-6 max-w-lg text-base leading-7 text-muted sm:text-lg sm:leading-8">
+            Luz, sentimentos e histórias transformados em memórias delicadas, autênticas e feitas para permanecer.
+          </p>
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a class="inline-flex min-h-14 items-center justify-center gap-3 bg-ink px-7 text-sm font-semibold text-cream transition hover:bg-[#49392e]" href="https://wa.me/5584996740734?text=Ol%C3%A1%2C%20Clara!%20Gostaria%20de%20conversar%20sobre%20um%20ensaio%20fotogr%C3%A1fico." target="_blank" rel="noopener noreferrer">
+              Vamos conversar <span aria-hidden="true">↗</span>
+            </a>
+            <a class="inline-flex min-h-14 items-center justify-center border border-ink/20 px-7 text-sm font-semibold text-ink transition hover:border-ink" href="#portfolio">
+              Conheça o portfólio
+            </a>
+          </div>
+          <p class="mt-8 text-xs tracking-[0.08em] text-muted">Ensaios, retratos e histórias de vida por Clara Fernandes</p>
+        </div>
+
+        <div class="relative order-1 mx-auto w-full max-w-[610px] lg:order-2 lg:ml-auto">
+          <div class="absolute -left-3 top-8 hidden h-[82%] w-[82%] border border-gold/60 sm:block"></div>
+          <figure class="relative ml-auto h-[430px] w-[88%] overflow-hidden bg-sand sm:h-[580px]">
+            <img
+              class="hero-photo h-full w-full object-cover"
+              src="assets/images/gestante-estudio.jpeg"
+              alt="Retrato de gestante em ensaio de estúdio"
+              fetchpriority="high"
+              width="1170"
+              height="1560"
+            >
+          </figure>
+          <div class="absolute bottom-8 left-0 max-w-[230px] bg-cream px-5 py-4 shadow-sm sm:bottom-12 sm:px-7 sm:py-5">
+            <span class="block font-serif text-xl text-ink">O tempo passa.</span>
+            <span class="mt-1 block text-sm text-muted">A memória fica.</span>
+          </div>
+          <span class="absolute right-0 top-4 hidden text-[0.62rem] uppercase tracking-[0.22em] text-muted [writing-mode:vertical-rl] sm:block">Clareando fotografia</span>
+        </div>
+      </section>
+
+      <section id="portfolio" class="bg-sand/65 py-20 sm:py-24" aria-labelledby="portfolio-title">
+        <div class="mx-auto max-w-7xl px-5 sm:px-8">
+          <div class="mb-10 flex flex-col justify-between gap-5 sm:mb-14 sm:flex-row sm:items-end">
+            <div>
+              <p class="mb-3 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#8a6547]">Instantes que contam histórias</p>
+              <h2 id="portfolio-title" class="max-w-xl text-3xl leading-tight sm:text-4xl">Um olhar para cada fase, cada encontro, cada sentimento.</h2>
+            </div>
+            <p class="max-w-sm text-sm leading-6 text-muted">Retratos e celebrações fotografados com atenção ao que torna cada história única.</p>
+          </div>
+
+          <div class="gallery-columns">
+            <figure class="gallery-item">
+              <div class="gallery-image">
+                <img src="assets/images/gestante-estudio.jpeg" alt="Gestante em retrato de estúdio com fundo neutro" loading="lazy" width="1170" height="1560">
+              </div>
+              <figcaption class="flex items-center justify-between gap-3 pt-3 text-xs text-muted">
+                <span>Ensaios gestantes</span><span aria-hidden="true">01</span>
+              </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+              <div class="gallery-image">
+                <img src="assets/images/casal-pordosol.jpeg" alt="Composição de um casal em ensaio externo na luz do fim de tarde" loading="lazy" width="1170" height="1560">
+              </div>
+              <figcaption class="flex items-center justify-between gap-3 pt-3 text-xs text-muted">
+                <span>Casais &amp; pôr do sol</span><span aria-hidden="true">02</span>
+              </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+              <div class="gallery-image">
+                <img src="assets/images/infantil-batizado.jpeg" alt="Pai sorrindo com uma criança em um retrato espontâneo" loading="lazy" width="1170" height="1560">
+              </div>
+              <figcaption class="flex items-center justify-between gap-3 pt-3 text-xs text-muted">
+                <span>Infantil &amp; família</span><span aria-hidden="true">03</span>
+              </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+              <div class="gallery-image">
+                <img src="assets/images/casamento.jpeg" alt="Retrato delicado de um casal em seu casamento" loading="lazy" width="1170" height="1560">
+              </div>
+              <figcaption class="flex items-center justify-between gap-3 pt-3 text-xs text-muted">
+                <span>Casamentos</span><span aria-hidden="true">04</span>
+              </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+              <div class="gallery-image">
+                <img src="assets/images/gestante-preto-e-branco.jpeg" alt="Retrato em preto e branco de uma gestante" loading="lazy" width="1170" height="1560">
+              </div>
+              <figcaption class="flex items-center justify-between gap-3 pt-3 text-xs text-muted">
+                <span>Retratos em preto e branco</span><span aria-hidden="true">05</span>
+              </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+              <div class="gallery-image">
+                <img src="assets/images/batizado.jpeg" alt="Registros de uma celebração de batizado em família" loading="lazy" width="1170" height="1560">
+              </div>
+              <figcaption class="flex items-center justify-between gap-3 pt-3 text-xs text-muted">
+                <span>Infantil &amp; batizados</span><span aria-hidden="true">06</span>
+              </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+              <div class="gallery-image">
+                <img src="assets/images/retrato-individual.jpeg" alt="Retrato feminino em estúdio com bolo decorado" loading="lazy" width="1170" height="1560">
+              </div>
+              <figcaption class="flex items-center justify-between gap-3 pt-3 text-xs text-muted">
+                <span>Ensaios individuais</span><span aria-hidden="true">07</span>
+              </figcaption>
+            </figure>
+          </div>
+          <p class="mt-7 text-xs leading-5 text-muted">Imagens do portfólio sujeitas à autorização de uso das pessoas retratadas.</p>
+        </div>
+      </section>
+
+      <section id="especialidades" class="py-20 sm:py-24" aria-labelledby="specialties-title">
+        <div class="mx-auto max-w-7xl px-5 sm:px-8">
+          <div class="mx-auto mb-12 max-w-2xl text-center sm:mb-16">
+            <p class="mb-3 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#8a6547]">Especialidades</p>
+            <h2 id="specialties-title" class="text-3xl leading-tight sm:text-4xl">Histórias diferentes, o mesmo cuidado em cada detalhe.</h2>
+            <p class="mx-auto mt-5 max-w-xl text-sm leading-7 text-muted">Encontre o tipo de registro que faz sentido para o momento que você quer guardar.</p>
+          </div>
+
+          <div class="grid gap-px bg-[#d9d3ca] sm:grid-cols-2 lg:grid-cols-3">
+            <article class="bg-cream p-7 sm:p-9">
+              <span class="text-xs tracking-[0.2em] text-[#8a6547]">01</span>
+              <h3 class="mt-6 text-2xl">Individuais &amp; femininos</h3>
+              <p class="mt-3 text-sm leading-6 text-muted">Retratos que valorizam presença, identidade e a beleza de cada pessoa.</p>
+            </article>
+            <article class="bg-cream p-7 sm:p-9">
+              <span class="text-xs tracking-[0.2em] text-[#8a6547]">02</span>
+              <h3 class="mt-6 text-2xl">Casais</h3>
+              <p class="mt-3 text-sm leading-6 text-muted">Ensaios externos com espaço para conexão, espontaneidade e luz de fim de tarde.</p>
+            </article>
+            <article class="bg-cream p-7 sm:p-9">
+              <span class="text-xs tracking-[0.2em] text-[#8a6547]">03</span>
+              <h3 class="mt-6 text-2xl">Gestantes</h3>
+              <p class="mt-3 text-sm leading-6 text-muted">Retratos em estúdio ou ao ar livre para guardar com carinho essa fase.</p>
+            </article>
+            <article class="bg-cream p-7 sm:p-9">
+              <span class="text-xs tracking-[0.2em] text-[#8a6547]">04</span>
+              <h3 class="mt-6 text-2xl">Infantil &amp; batizados</h3>
+              <p class="mt-3 text-sm leading-6 text-muted">Afeto, descobertas e celebrações importantes registrados com delicadeza.</p>
+            </article>
+            <article class="bg-cream p-7 sm:p-9">
+              <span class="text-xs tracking-[0.2em] text-[#8a6547]">05</span>
+              <h3 class="mt-6 text-2xl">Eventos</h3>
+              <p class="mt-3 text-sm leading-6 text-muted">Aniversários, casamentos, formaturas, batizados, celebrações e confraternizações.</p>
+            </article>
+            <article class="bg-cream p-7 sm:p-9">
+              <span class="text-xs tracking-[0.2em] text-[#8a6547]">06</span>
+              <h3 class="mt-6 text-2xl">Retratos profissionais</h3>
+              <p class="mt-3 text-sm leading-6 text-muted">Imagens profissionais com naturalidade, intenção e atenção à sua presença.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="pacotes" class="bg-[#f3f0ea] py-20 sm:py-24" aria-labelledby="packages-title">
+        <div class="mx-auto max-w-7xl px-5 sm:px-8">
+          <div class="mb-12 flex flex-col justify-between gap-5 sm:mb-14 sm:flex-row sm:items-end">
+            <div class="max-w-2xl">
+              <p class="mb-3 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#8a6547]">Pacotes &amp; experiências</p>
+              <h2 id="packages-title" class="text-3xl leading-tight sm:text-4xl">Um jeito de fotografar que acompanha a sua história.</h2>
+            </div>
+            <p class="max-w-sm text-sm leading-6 text-muted">Cada proposta é personalizada. Converse com Clara para entender o que combina com o seu ensaio.</p>
+          </div>
+
+          <div class="grid gap-5 lg:grid-cols-3">
+            <article class="flex flex-col border border-[#d8d1c7] bg-cream p-7 sm:p-9">
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6547]">01 · Essencial</p>
+              <h3 class="mt-5 text-3xl">Essencial</h3>
+              <p class="mt-4 text-sm leading-6 text-muted">Para registrar seu momento em uma sessão objetiva e cuidadosamente conduzida.</p>
+              <ul class="mt-7 space-y-3 border-t border-ink/10 pt-6 text-sm leading-6 text-ink/80">
+                <li class="flex gap-3"><span class="text-[#8a6547]" aria-hidden="true">—</span> Ensaio de curta duração</li>
+                <li class="flex gap-3"><span class="text-[#8a6547]" aria-hidden="true">—</span> Quantidade definida de fotos editadas</li>
+                <li class="flex gap-3"><span class="text-[#8a6547]" aria-hidden="true">—</span> Entrega digital</li>
+              </ul>
+              <a class="mt-auto inline-flex items-center gap-2 pt-8 text-sm font-semibold text-ink hover:text-[#8a5a32]" href="https://wa.me/5584996740734?text=Ol%C3%A1%2C%20Clara!%20Gostaria%20de%20consultar%20uma%20proposta%20para%20a%20experi%C3%AAncia%20Essencial." target="_blank" rel="noopener noreferrer">Consultar proposta <span aria-hidden="true">↗</span></a>
+            </article>
+
+            <article class="flex flex-col border border-[#d8d1c7] bg-cream p-7 sm:p-9">
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6547]">02 · Especial</p>
+              <h3 class="mt-5 text-3xl">Especial</h3>
+              <p class="mt-4 text-sm leading-6 text-muted">Mais tempo e possibilidades para explorar diferentes expressões e cenários.</p>
+              <ul class="mt-7 space-y-3 border-t border-ink/10 pt-6 text-sm leading-6 text-ink/80">
+                <li class="flex gap-3"><span class="text-[#8a6547]" aria-hidden="true">—</span> Maior duração e mais fotos editadas</li>
+                <li class="flex gap-3"><span class="text-[#8a6547]" aria-hidden="true">—</span> Variedade de poses e cenários</li>
+                <li class="flex gap-3"><span class="text-[#8a6547]" aria-hidden="true">—</span> Arquivos digitais em alta resolução</li>
+              </ul>
+              <a class="mt-auto inline-flex items-center gap-2 pt-8 text-sm font-semibold text-ink hover:text-[#8a5a32]" href="https://wa.me/5584996740734?text=Ol%C3%A1%2C%20Clara!%20Gostaria%20de%20consultar%20uma%20proposta%20para%20a%20experi%C3%AAncia%20Especial." target="_blank" rel="noopener noreferrer">Consultar proposta <span aria-hidden="true">↗</span></a>
+            </article>
+
+            <article class="flex flex-col border border-[#c6a889] bg-[#eee5d9] p-7 sm:p-9">
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6547]">03 · Premium</p>
+              <h3 class="mt-5 text-3xl">Premium</h3>
+              <p class="mt-4 text-sm leading-6 text-muted">Uma experiência personalizada para contar sua história com mais possibilidades.</p>
+              <ul class="mt-7 space-y-3 border-t border-ink/10 pt-6 text-sm leading-6 text-ink/80">
+                <li class="flex gap-3"><span class="text-[#8a6547]" aria-hidden="true">—</span> Maior volume de fotografias</li>
+                <li class="flex gap-3"><span class="text-[#8a6547]" aria-hidden="true">—</span> Troca de looks e galeria digital</li>
+                <li class="flex gap-3"><span class="text-[#8a6547]" aria-hidden="true">—</span> Opção de álbum fotográfico</li>
+              </ul>
+              <a class="mt-auto inline-flex items-center gap-2 pt-8 text-sm font-semibold text-ink hover:text-[#8a5a32]" href="https://wa.me/5584996740734?text=Ol%C3%A1%2C%20Clara!%20Gostaria%20de%20consultar%20uma%20proposta%20para%20a%20experi%C3%AAncia%20Premium." target="_blank" rel="noopener noreferrer">Consultar proposta <span aria-hidden="true">↗</span></a>
+            </article>
+          </div>
+
+          <p class="mt-7 text-center text-xs leading-5 text-muted">Valores e composição são personalizados de acordo com o tipo de ensaio, a duração, a localização e as necessidades de cada cliente.</p>
+        </div>
+      </section>
+
+      <section id="sobre" class="py-20 sm:py-24" aria-labelledby="about-title">
+        <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <figure class="relative mx-auto w-full max-w-lg">
+            <div class="absolute -bottom-4 -left-4 h-full w-full border border-gold/70" aria-hidden="true"></div>
+            <img
+              class="relative aspect-[4/5] w-full object-cover object-center"
+              src="assets/images/clara-com-camera.jpeg"
+              alt="Fotógrafa segurando uma câmera durante um retrato"
+              loading="lazy"
+              width="1170"
+              height="1560"
+            >
+          </figure>
+
+          <div class="max-w-xl">
+            <p class="mb-3 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#8a6547]">Por trás das lentes</p>
+            <h2 id="about-title" class="text-3xl leading-tight sm:text-4xl">Sou Clara Fernandes. A fotografia me aproxima do que merece ficar.</h2>
+            <div class="gold-rule mt-7" aria-hidden="true"></div>
+            <p class="mt-7 text-base leading-8 text-muted">
+              A fotografia nasceu do desejo de eternizar aquilo que o tempo não pode levar. No Clareando, cada encontro é fotografado com sensibilidade, um olhar atento aos detalhes e espaço para a espontaneidade.
+            </p>
+            <p class="mt-4 text-base leading-8 text-muted">
+              Transformo luz, sentimentos e histórias em memórias delicadas, autênticas e atemporais — lembranças para guardar e revisitar ao longo da vida.
+            </p>
+            <a class="mt-8 inline-flex items-center gap-3 border-b border-[#8a6547] pb-2 text-sm font-semibold text-ink transition hover:gap-5" href="#portfolio">
+              Conheça meu trabalho <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-ink py-20 text-cream sm:py-24" aria-labelledby="quote-title">
+        <div class="mx-auto max-w-4xl px-5 text-center sm:px-8">
+          <span class="font-serif text-5xl text-gold" aria-hidden="true">“</span>
+          <h2 id="quote-title" class="mx-auto max-w-3xl text-3xl leading-snug text-cream sm:text-4xl">O que a gente vive merece um lugar bonito na memória.</h2>
+          <p class="mt-5 text-sm text-cream/65">Clareando — eternizando a beleza de cada instante.</p>
+        </div>
+      </section>
+
+      <section id="contato" class="py-20 sm:py-24" aria-labelledby="contact-title">
+        <div class="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <div class="max-w-md">
+            <p class="mb-3 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#8a6547]">Orçamento personalizado</p>
+            <h2 id="contact-title" class="text-3xl leading-tight sm:text-4xl">Vamos conversar sobre o que você quer guardar?</h2>
+            <p class="mt-5 text-sm leading-7 text-muted">
+              Cada projeto é único. O orçamento é preparado conforme o tipo de ensaio, a duração, a localização e as suas necessidades.
+            </p>
+            <p class="mt-4 text-sm leading-7 text-muted">
+              Conte um pouco sobre a sua ideia ou fale diretamente com Clara pelos canais oficiais.
+            </p>
+            <div class="mt-6 flex flex-col items-start gap-3">
+              <a
+                class="inline-flex items-center gap-2 text-sm font-semibold text-ink underline decoration-gold underline-offset-4 hover:text-[#8a5a32]"
+                href="https://wa.me/5584996740734"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp: +55 (84) 99674-0734 <span aria-hidden="true">↗</span>
+              </a>
+              <a
+                class="inline-flex items-center gap-2 text-sm font-semibold text-ink underline decoration-gold underline-offset-4 hover:text-[#8a5a32]"
+                href="https://www.instagram.com/clareandofotografia/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Instagram: @clareandofotografia <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <div class="mt-8 border-l border-gold pl-5">
+              <p class="font-serif text-xl">Sem pressa, com intenção.</p>
+              <p class="mt-1 text-xs leading-5 text-muted">Um primeiro passo para planejar suas fotografias.</p>
+            </div>
+          </div>
+
+          <form
+            class="grid gap-5 sm:grid-cols-2"
+            @submit.prevent="prepareBudget($event)"
+          >
+            <div>
+              <label class="mb-2 block text-xs font-semibold" for="name">Seu nome</label>
+              <input class="form-control" id="name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div>
+              <label class="mb-2 block text-xs font-semibold" for="contact-method">E-mail ou telefone para retorno</label>
+              <input class="form-control" id="contact-method" name="contact" type="text" autocomplete="off" required>
+            </div>
+            <div>
+              <label class="mb-2 block text-xs font-semibold" for="service">O que deseja fotografar?</label>
+              <select class="form-control" id="service" name="service" required>
+                <option value="" selected disabled>Selecione uma opção</option>
+                <option>Ensaio individual ou feminino</option>
+                <option>Ensaio de casal</option>
+                <option>Ensaio gestante</option>
+                <option>Ensaio infantil ou batizado</option>
+                <option>Evento</option>
+                <option>Retrato profissional</option>
+                <option>Outra ideia</option>
+              </select>
+            </div>
+            <div>
+              <label class="mb-2 block text-xs font-semibold" for="date">Data ou período aproximado</label>
+              <input class="form-control" id="date" name="date" type="text" placeholder="Se já souber">
+            </div>
+            <div class="sm:col-span-2">
+              <label class="mb-2 block text-xs font-semibold" for="location">Cidade ou localidade</label>
+              <input class="form-control" id="location" name="location" type="text" autocomplete="address-level2" placeholder="Informe onde imagina fazer as fotos">
+            </div>
+            <div class="sm:col-span-2">
+              <label class="mb-2 block text-xs font-semibold" for="message">Conte um pouco sobre a sua ideia</label>
+              <textarea class="form-control min-h-32 resize-y" id="message" name="message" required></textarea>
+            </div>
+            <div class="sm:col-span-2">
+              <button class="inline-flex min-h-14 w-full items-center justify-center gap-3 bg-ink px-7 text-sm font-semibold text-cream transition hover:bg-[#49392e] sm:w-auto" type="submit">
+                Preparar mensagem no WhatsApp <span aria-hidden="true">↗</span>
+              </button>
+              <p class="mt-3 text-xs leading-5 text-muted">A mensagem será aberta no WhatsApp informado. Revise o texto e confirme o envio no aplicativo.</p>
+            </div>
+            <div class="sm:col-span-2" aria-live="polite">
+              <p x-show="formMessage" x-text="formMessage" class="text-sm leading-6 text-[#5b442f]"></p>
+              <a
+                x-show="shareUrl"
+                x-cloak
+                :href="shareUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-3 inline-flex items-center gap-2 border-b border-[#8a6547] pb-1 text-sm font-semibold text-ink"
+              >
+                Abrir a mensagem no WhatsApp <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-[#eeeae3]">
+      <div class="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-14">
+        <div class="grid gap-10 border-b border-ink/15 pb-10 sm:grid-cols-2 lg:grid-cols-[1fr_auto_auto_auto] lg:items-start">
+          <div>
+            <a class="inline-block" href="#inicio" aria-label="Clareando, voltar ao início">
+              <span class="block font-serif text-2xl tracking-[0.14em] text-ink">CLAREANDO</span>
+              <span class="mt-1 block text-[0.62rem] tracking-[0.2em] text-muted">por Clara Fernandes</span>
+            </a>
+            <p class="mt-4 max-w-sm font-serif text-lg text-ink">Clareando — eternizando a beleza de cada instante.</p>
+          </div>
+          <nav class="flex flex-col gap-3 text-sm text-muted" aria-label="Navegação do rodapé">
+            <a class="hover:text-ink" href="#inicio">Início</a>
+            <a class="hover:text-ink" href="#portfolio">Portfólio</a>
+            <a class="hover:text-ink" href="#especialidades">Especialidades</a>
+            <a class="hover:text-ink" href="#pacotes">Pacotes</a>
+            <a class="hover:text-ink" href="#sobre">Sobre</a>
+            <a class="hover:text-ink" href="#contato">Contato</a>
+          </nav>
+          <div class="flex flex-col items-start gap-3 text-sm">
+            <a class="font-semibold text-ink hover:text-[#8a5a32]" href="https://wa.me/5584996740734" target="_blank" rel="noopener noreferrer">
+              WhatsApp <span aria-hidden="true">↗</span>
+            </a>
+            <a class="font-semibold text-ink hover:text-[#8a5a32]" href="https://www.instagram.com/clareandofotografia/" target="_blank" rel="noopener noreferrer">
+              Instagram <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <a class="inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-[#8a5a32]" href="https://wa.me/5584996740734?text=Ol%C3%A1%2C%20Clara!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20fotografia." target="_blank" rel="noopener noreferrer">Solicitar orçamento <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="flex flex-col gap-2 pt-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
+          <p>© <span id="current-year"></span> Clareando — Clara Fernandes.</p>
+          <p>Fotografia para guardar o que importa.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("current-year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

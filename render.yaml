@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: clareando-fotografia
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: ./site
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
